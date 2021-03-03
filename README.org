@@ -1,1 +1,62 @@
-* arduino_behavior_tree
+* Arduino Behavior Tree
+
+Example platformio project for the arduino due. Uses the [[https://github.com/crust/beehive][beehive]] header only behavior trees library, and [[https://github.com/BehaviorTree/Groot][Groot]] for visual editing of trees.
+
+* Steps to run the project
+
+1. Install [[https://platformio.org/][platformio]]
+#+BEGIN_SRC shell
+pip install -U platformio
+#+END_SRC
+
+2. Install and use [[https://github.com/BehaviorTree/Groot][Groot]] to edit behavior trees.
+
+3. Run the script to parse the tree xml created by Groot
+#+BEGIN_SRC shell
+python3 pygroot.py simple_tree.xml
+#+END_SRC
+
+4. Compile and upload to arduino
+#+BEGIN_SRC shell
+pio run -t upload
+#+END_SRC
+
+* How to create your own project
+
+The structure of the project is:
+
+#+BEGIN_SRC shell
+├── lib
+│   └── behavior_tree
+│       ├── context.cpp
+│       └── Data.h
+├── platformio.ini
+├── pygroot.py
+├── README.org
+├── simple_tree.xml
+└── src
+    └── main.cpp
+#+END_SRC
+
+  - context.cpp contains your implementations for the tree action and condition nodes
+  - Data.h contains the data structure for the tree state
+  - simple_tree.xml is the behavior tree created by Groot
+  - main.cpp initializes and runs the behavior tree
+
+1. Edit the tree in Groot:
+
+[[./images/tree.png]]
+
+This example tree will write to the led pin after 5 seconds have passed.
+
+2. Run the script, this will create a file TREE.h and context.cpp in lib/behavior_tree
+#+BEGIN_SRC shell
+python3 pygroot.py simple_tree.xml
+#+END_SRC
+
+3. If you created new nodes in Groot, you need to implement them in context.cpp
+4. If you need more state, implement it in Data.h
+5. Run your new tree
+#+BEGIN_SRC shell
+pio run -t upload
+#+END_SRC
