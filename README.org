@@ -5,27 +5,27 @@ Example platformio project for the arduino due. Uses the [[https://github.com/cr
 * Steps to run the project
 
 1. Clone this repo and init submodules
-#+BEGIN_SRC shell
-git clone https://github.com/carlos-cardoso/arduino_behavior_tree.git
-git submodule update --init --recursive
-#+END_SRC
+    #+BEGIN_SRC shell
+    git clone https://github.com/carlos-cardoso/arduino_behavior_tree.git
+    git submodule update --init --recursive
+    #+END_SRC
 
 2. Install [[https://platformio.org/][platformio]]
-#+BEGIN_SRC shell
-pip install -U platformio
-#+END_SRC
+    #+BEGIN_SRC shell
+    pip install -U platformio
+    #+END_SRC
 
 3. Install and use [[https://github.com/BehaviorTree/Groot][Groot]] to edit behavior trees.
 
 4. Run the script to parse the tree xml created by Groot
-#+BEGIN_SRC shell
-python3 pygroot.py simple_tree.xml
-#+END_SRC
+    #+BEGIN_SRC shell
+    python3 pygroot.py simple_tree.xml
+    #+END_SRC
 
 5. Compile and upload to arduino
-#+BEGIN_SRC shell
-pio run -t upload
-#+END_SRC
+    #+BEGIN_SRC shell
+    pio run -t upload
+    #+END_SRC
 
 * How to create your own project
 
@@ -51,18 +51,18 @@ The structure of the project is:
 
 1. Edit the tree in Groot:
 
-[[./images/tree.png]]
+    [[./images/tree.png]]
 
-This example tree will write to the led pin after 5 seconds have passed.
+    This example tree will write to the led pin after 5 seconds have passed.
 
 2. Run the script, this will create a file TREE.h and context.cpp in lib/behavior_tree
-#+BEGIN_SRC shell
-python3 pygroot.py simple_tree.xml
-#+END_SRC
+    #+BEGIN_SRC shell
+    python3 pygroot.py simple_tree.xml
+    #+END_SRC
 
 3. If you created new nodes in Groot, you need to implement them in context.cpp
 4. If you need more state, implement it in Data.h
 5. Run your new tree
-#+BEGIN_SRC shell
-pio run -t upload
-#+END_SRC
+    #+BEGIN_SRC shell
+    pio run -t upload
+    #+END_SRC
