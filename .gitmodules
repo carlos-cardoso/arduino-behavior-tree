@@ -1,0 +1,3 @@
+[submodule "include/beehive"]
+	path = include/beehive
+	url = https://github.com/crust/beehive.git

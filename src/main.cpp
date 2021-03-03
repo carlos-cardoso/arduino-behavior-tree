@@ -1,24 +1,26 @@
 #undef min
 #undef max
 
-#include "TREE.h"
 #include <beehive.hpp>
+#include "TREE.h"
 
 using namespace beehive;
 
-  Data tree_data{13};
-  Context tree_state{tree_data};
-  Tree<Context> behavior_tree;
+const uint32_t led_pin{13};
+Data tree_data{led_pin}; //initialize the data structure with example data led_pin
+Context tree_state{tree_data}; //use the struct as context for the tree
+Tree<Context> behavior_tree;  //create behavior tree
+
 void setup() {
 
   const uint32_t start = millis();
-  tree_state.data.initialize(start);
-  behavior_tree = build_tree_BehaviorTree();
+  tree_state.data.initialize(start); //initialize tree data with the start time
+  behavior_tree = build_tree_BehaviorTree(); //build the behavior tree
 
 };
 
 void loop() {
 
-  behavior_tree.process(tree_state);
+  behavior_tree.process(tree_state); //run the tree
 
 };
